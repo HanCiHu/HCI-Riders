@@ -1,10 +1,7 @@
-import React from 'react';
 
 const cautionScreen = (): JSX.Element => {
 	return (
-		<div>
-			{'cautionScreen'}
-		</div>
+		<div>123</div>
 	);
 }
 
