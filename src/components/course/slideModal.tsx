@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+
 import Card from './card';
 
 const Container = styled.div<{modalHeight: number}>`
@@ -34,7 +35,10 @@ const CardWrap = styled.div<{modalHeight: number}>`
   width: 90%;
   height: ${({modalHeight}) => modalHeight - 50}px;
 
-  padding: 30px 25px 5px 25px;
+  padding: 0px 25px 5px 30px;
+
+  position: relative;
+  top: 30px;
 
   overflow: ${({modalHeight}) => {
     if (modalHeight > 170) return 'scroll';
@@ -53,7 +57,7 @@ const ModeWrapper = styled.div`
   position: relative;
   top: 40px;
 
-  margin: 0px 25px 0px 25px;
+  margin: 0px 25px 0px 30px;
 
   display: flex;
   flex-wrap: wrap;
@@ -99,7 +103,7 @@ const SlideModal = ():JSX.Element => {
           <Card />
           <Card />
           <Card />
-          <div style={{width: '100%', height: 50, backgroundColor: '#727272'}}/>
+          <div style={{width: '100%', height: 100, backgroundColor: '#727272'}}/>
         </CardWrap>
       </Container>
   );
