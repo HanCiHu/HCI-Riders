@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import BottomNavigator from './../tabNavigator';
 import AddModal from './addModal';
+import { warningData } from '../../data';
 
 const Container = styled.div`
 	width: 100%;
@@ -46,13 +47,6 @@ const AddWarningModal = styled.div<IPin>`
 	transform: ${({x, y}) => `translate(${x}px, ${y}px);`};
 
 `;
-
-interface IWarningData {
-	x: number,
-	y: number
-}
-
-const warningData: IWarningData[] = [{x: 2000, y: 1100}, {x: 1600, y: 900}, {x: 1500, y: 1200}, {x: 1400, y: 800}, {x: 1800, y: 1000}]
 
 const CautionScreen = (): JSX.Element => {
 	const mapDivRef = useRef<HTMLDivElement>(null);

@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { users } from '../../data';
 
 const Container = styled.div`
 	width: 100%;
@@ -52,15 +53,6 @@ interface IUser {
 	id: string,
 	pw: string,
 }
-
-const users = [
-	{id: 'testuser', pw: '1234'},
-	{id: 'kinm1596@daum.net', pw: 'test123'},
-	{id: 'hyunjin', pw: 'hyunjin123'},
-	{id: '123123', pw: '456789'},
-	{id: 'helloWorld!', pw: 'world!hello!'},
-	{id: 'test', pw: 'test'},
-];
 
 const SignScreen = (): JSX.Element => {
 	const navigate = useNavigate();
