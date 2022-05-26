@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import BottomNavigator from './../tabNavigator';
+import AddModal from './addModal';
 
 const Container = styled.div`
 	width: 100%;
@@ -57,7 +58,8 @@ const CautionScreen = (): JSX.Element => {
 	const mapDivRef = useRef<HTMLDivElement>(null);
 	const touchTimeoutRef = useRef<Date>();
 	const touchPositionRef = useRef<IPin>({x: 0, y: 0});
-	const [modalFlag, setModalFlag] = useState<boolean>(false);
+	const [selectModalFlag, setSelectModalFlag] = useState<boolean>(false);
+	const [warnModalFlag, setWarnModalFlag] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (!mapDivRef.current) return;
@@ -66,7 +68,7 @@ const CautionScreen = (): JSX.Element => {
 	}, []);
 
 	const touchStartHandler = () => {
-		setModalFlag(false);
+		setSelectModalFlag(false);
 		touchTimeoutRef.current = new Date();
 	};
 
@@ -74,18 +76,19 @@ const CautionScreen = (): JSX.Element => {
 		if (!touchTimeoutRef.current || !mapDivRef.current) return ;
 		if (new Date().getTime() - touchTimeoutRef.current.getTime() > 300){
 			touchPositionRef.current = { x: e.changedTouches[0].pageX + mapDivRef.current.scrollLeft, y: e.changedTouches[0].pageY+	mapDivRef.current.scrollTop };
-			setModalFlag(true);
+			setSelectModalFlag(true);
 		}
 	}
 
 	const addWarnModal = () => {
-		alert(1);
+		setWarnModalFlag(true);
 	}
 
 	return (
 		<Container>
+				{warnModalFlag && <AddModal setWarnModalFlag={setWarnModalFlag}/>}
 				<MapWrapper ref={mapDivRef} onTouchStart={touchStartHandler} onTouchEnd={touchEndHandler}>
-					{modalFlag && <AddWarningModal onTouchStart={addWarnModal} x={touchPositionRef.current.x} y={touchPositionRef.current.y}>{"마크 생성"}</AddWarningModal>}
+					{selectModalFlag && <AddWarningModal onTouchStart={addWarnModal} x={touchPositionRef.current.x} y={touchPositionRef.current.y}>{"마크 생성"}</AddWarningModal>}
 					<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={4506} y={4364} />
 					{warningData.map(({x, y}, i) => <Pin src={`${process.env.PUBLIC_URL}/warning_pin.svg`} x={x} y={y} key={i} />)}
 					<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={1900} y={1030} />
