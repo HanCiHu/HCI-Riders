@@ -1,11 +1,22 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 import Card from './card';
+
+const slideUpAnimation = keyframes`
+  from {
+    transform: translateY(200px);
+  }
+  to {
+    transform: none;
+  }
+`;
 
 const Container = styled.div<{modalHeight: number}>`
   width: 100%;
   height: ${({modalHeight}) => modalHeight}px;
+
+  animation: ${({modalHeight}) => modalHeight > 170 ? css`${slideUpAnimation} 1s ease-in-out` : ''};
 
   background-color: #727272;
   border-radius: 50px;
@@ -32,7 +43,7 @@ const SlideBtn = styled.div`
 `;
 
 const CardWrap = styled.div<{modalHeight: number}>`
-  width: 85%;
+  width: 90%;
   height: ${({modalHeight}) => modalHeight - 50}px;
 
   margin: 0 auto;
@@ -51,14 +62,14 @@ const CardWrap = styled.div<{modalHeight: number}>`
   justify-content: space-around;
 
   scrollbar-width: none;
-	
+
 	::-webkit-scrollbar{
 		display: none;
 	}
 `;
 
 const ModeWrapper = styled.div`
-  width: 85%;
+  width: 90%;
   height: 50px;
 
   position: relative;

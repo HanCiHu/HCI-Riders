@@ -79,7 +79,7 @@ const CautionScreen = (): JSX.Element => {
 
     setTimeout(() => {
       makeWarning(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
-    }, 1000);
+    }, 300);
   };
 
 	const touchEndHandler = () => {
@@ -93,7 +93,7 @@ const CautionScreen = (): JSX.Element => {
 	return (
 		<Container>
 				<MapWrapper ref={mapDivRef} onTouchStart={touchStartHandler} onTouchEnd={touchEndHandler}>
-					{modalFlag && <AddWarningModal onClick={addMarkHandler} x={touchPositionRef.current.x} y={touchPositionRef.current.y}>{"마크 생성"}</AddWarningModal>}
+					{modalFlag && <AddWarningModal onTouchStart={addMarkHandler} x={touchPositionRef.current.x} y={touchPositionRef.current.y}>{"마크 생성"}</AddWarningModal>}
 					<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={4506} y={4364} />
 					{warningData.map(({x, y}, i) => <Pin src={`${process.env.PUBLIC_URL}/warning_pin.svg`} x={x} y={y} key={i} />)}
 					<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={1900} y={1030} />
