@@ -27,15 +27,15 @@ const SlideBtn = styled.div`
   top: 15px;
   left: 0;
   right: 0;
-  margin-left: auto;
-  margin-right: auto;
+
+  margin: 0 auto;
 `;
 
 const CardWrap = styled.div<{modalHeight: number}>`
-  width: 90%;
+  width: 85%;
   height: ${({modalHeight}) => modalHeight - 50}px;
 
-  padding: 0px 25px 5px 30px;
+  margin: 0 auto;
 
   position: relative;
   top: 30px;
@@ -48,19 +48,27 @@ const CardWrap = styled.div<{modalHeight: number}>`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-around;
+
+  scrollbar-width: none;
+	
+	::-webkit-scrollbar{
+		display: none;
+	}
 `;
 
 const ModeWrapper = styled.div`
-  width: 100%;
+  width: 85%;
   height: 50px;
 
   position: relative;
   top: 40px;
 
-  margin: 0px 25px 0px 30px;
+  margin: 0 auto;
 
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 `;
 
 const MyCourseBtn = styled.div<{modeFlag: boolean}>`
@@ -103,7 +111,7 @@ const SlideModal = ():JSX.Element => {
           <Card />
           <Card />
           <Card />
-          <div style={{width: '100%', height: 100, backgroundColor: '#727272'}}/>
+          <div style={{width: '10%', height: 100, backgroundColor: '#727272'}}/>
         </CardWrap>
       </Container>
   );

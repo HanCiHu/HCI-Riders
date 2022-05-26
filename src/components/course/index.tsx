@@ -80,11 +80,10 @@ const CourseScreen = (): JSX.Element => {
 			</CourseBtnDiv>
 			<MapWrapper ref={mapDivRef}>
 				<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={4506} y={4364} />
-				<Pin src={`${process.env.PUBLIC_URL}/warning_pin.svg`} x={1800} y={1000} />
 				<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={1900} y={1030} />
 				<img src={`${process.env.PUBLIC_URL}/map.png`} />
 			</MapWrapper>
-				<SlideModal />
+			<SlideModal />
 			<BottomNavigator />
 		</Container>
 	);
