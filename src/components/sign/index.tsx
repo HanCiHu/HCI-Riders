@@ -68,7 +68,7 @@ const SignScreen = (): JSX.Element => {
 	const pwInputRef = useRef<HTMLInputElement>(null);
 
 	const signInHandler = (): void => {
-		const loginFlag = users.some((user: IUser) => user.id == idInputRef.current?.value && user.pw == pwInputRef.current?.value);
+		const loginFlag = users.some((user: IUser) => user.id === idInputRef.current?.value && user.pw === pwInputRef.current?.value);
 
 		if (!loginFlag) {
 			alert('아이디 또는 비밀번호가 틀립니다.');
