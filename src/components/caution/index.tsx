@@ -55,7 +55,7 @@ const warningData: IWarningData[] = [{x: 2000, y: 1100}, {x: 1600, y: 900}, {x: 
 
 const CautionScreen = (): JSX.Element => {
 	const mapDivRef = useRef<HTMLDivElement>(null);
-	const touchTimeoutRef = useRef<number>(0);
+	const touchTimeoutRef = useRef<Date>();
 	const touchPositionRef = useRef<IPin>({x: 0, y: 0});
 	const [modalFlag, setModalFlag] = useState<boolean>(false);
 
@@ -65,35 +65,27 @@ const CautionScreen = (): JSX.Element => {
 		mapDivRef.current.scrollLeft = 1750;
 	}, []);
 
-	const makeWarning = (x: number, y: number) => {
-		if (!mapDivRef.current) return;
-		if (touchTimeoutRef.current === 0) {
-			touchPositionRef.current = {x: mapDivRef.current.scrollLeft + x, y: mapDivRef.current.scrollTop + y};
-			setModalFlag(true);
-		}
+	const touchStartHandler = () => {
+		setModalFlag(false);
+		touchTimeoutRef.current = new Date();
 	};
 
-	const touchStartHandler = (e: any) => {
-		touchTimeoutRef.current = 0;
-		setModalFlag(false);
-
-    setTimeout(() => {
-      makeWarning(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
-    }, 300);
-  };
-
-	const touchEndHandler = () => {
-		touchTimeoutRef.current = 1;
+	const touchEndHandler = (e: any) => {
+		if (!touchTimeoutRef.current || !mapDivRef.current) return ;
+		if (new Date().getTime() - touchTimeoutRef.current.getTime() > 300){
+			touchPositionRef.current = { x: e.changedTouches[0].pageX + mapDivRef.current.scrollLeft, y: e.changedTouches[0].pageY+	mapDivRef.current.scrollTop };
+			setModalFlag(true);
+		}
 	}
 
-	const addMarkHandler = () => {
-		alert('1');
+	const addWarnModal = () => {
+		alert(1);
 	}
 
 	return (
 		<Container>
 				<MapWrapper ref={mapDivRef} onTouchStart={touchStartHandler} onTouchEnd={touchEndHandler}>
-					{modalFlag && <AddWarningModal onTouchStart={addMarkHandler} x={touchPositionRef.current.x} y={touchPositionRef.current.y}>{"마크 생성"}</AddWarningModal>}
+					{modalFlag && <AddWarningModal onTouchStart={addWarnModal} x={touchPositionRef.current.x} y={touchPositionRef.current.y}>{"마크 생성"}</AddWarningModal>}
 					<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={4506} y={4364} />
 					{warningData.map(({x, y}, i) => <Pin src={`${process.env.PUBLIC_URL}/warning_pin.svg`} x={x} y={y} key={i} />)}
 					<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={1900} y={1030} />
