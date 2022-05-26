@@ -31,6 +31,7 @@ const Pin = styled.img<IPin>`
 	height: 30px;
 	position: absolute;
 	transform: ${({x, y}) => `translate(${x}px, ${y}px);`};
+
 `;
 
 const CourseBtnDiv = styled.div`
@@ -78,8 +79,9 @@ const CourseScreen = (): JSX.Element => {
 				{!courseMode ? <FaPause size={30} className='pauseBtn' /> : <AiOutlineCaretRight size={50} className='startBtn' />}
 			</CourseBtnDiv>
 			<MapWrapper ref={mapDivRef}>
-				<Pin src={`${process.env.PUBLIC_URL}/pin.png`} x={4506} y={4364} />
-				<Pin src={`${process.env.PUBLIC_URL}/pin.png`} x={1900} y={1030} />
+				<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={4506} y={4364} />
+				<Pin src={`${process.env.PUBLIC_URL}/warning_pin.svg`} x={1800} y={1000} />
+				<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={1900} y={1030} />
 				<img src={`${process.env.PUBLIC_URL}/map.png`} />
 			</MapWrapper>
 				<SlideModal />
