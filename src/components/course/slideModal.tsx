@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
+import { FiPlusSquare } from 'react-icons/fi';
 
 import Card from './card';
+import { myCourseList, sharedCourseList } from '../../data';
 
 const slideUpAnimation = keyframes`
   from {
@@ -43,7 +45,7 @@ const SlideBtn = styled.div`
 `;
 
 const CardWrap = styled.div<{modalHeight: number}>`
-  width: 90%;
+  width: 85%;
   height: ${({modalHeight}) => modalHeight - 50}px;
 
   margin: 0 auto;
@@ -59,7 +61,8 @@ const CardWrap = styled.div<{modalHeight: number}>`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+
+  justify-content: space-between;
 
   scrollbar-width: none;
 
@@ -93,6 +96,19 @@ const MyCourseBtn = styled.div<{modeFlag: boolean}>`
   text-align: center;
 `;
 
+const AddCourseCard = styled.div`
+  width: 150px;
+  height: 100px;
+
+  background-color: #C4C4C4;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 5px;
+`;
+
 const SlideModal = ():JSX.Element => {
   const [modalHeight, setModalHeight] = useState<number>(170);
   const [courseMode, setMode] = useState<boolean>(false);
@@ -114,15 +130,12 @@ const SlideModal = ():JSX.Element => {
           <MyCourseBtn modeFlag={!courseMode}><p style={{marginTop: 5}} onClick={modeToggle}>Shared</p></MyCourseBtn>
         </ModeWrapper>
         <CardWrap modalHeight={modalHeight}>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <div style={{width: '10%', height: 100, backgroundColor: '#727272'}}/>
+          {!courseMode ?
+          myCourseList.map((title) => <Card key={title} title={title} color={"#5C9862"}/>)
+          : sharedCourseList.map((title) => <Card key={title} title={title} color={"#4F6BFF"} />)
+        }
+        {courseMode && <AddCourseCard><FiPlusSquare size={60}/></AddCourseCard>}
+          <div style={{width: '90%', height: 100, backgroundColor: '#727272'}}/>
         </CardWrap>
       </Container>
   );

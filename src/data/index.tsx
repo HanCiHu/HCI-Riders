@@ -19,3 +19,11 @@ export const warningData: IWarningData[] = [
   {x: 1400, y: 800},
   {x: 1800, y: 1000}
 ];
+
+export const myCourseList = [
+	"내 코스 A", "내 코스 B", "내 코스 C", "내 코스 D", "내 코스 E",
+];
+
+export const sharedCourseList = [
+	"공유된 코스 A", "공유된 코스 B", "공유된 코스 C"
+];
