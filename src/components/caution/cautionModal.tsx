@@ -40,30 +40,6 @@ const ImgWrapper = styled.div`
   transform: translate(60px, 40px);
 `;
 
-const CautionInput = styled.input`
-  color: #FFFFFF;
-
-  background-color: #727272;
-
-  margin: 16px;
-  border: none;
-
-  ::placeholder{
-		color: #FFFFFF;
-	}
-`;
-
-const RegisterBtn = styled.button`
-  width: 100px;
-  height: 30px;
-
-  background-color: #c4c4c4;
-
-  transform: translate(100px, 35px);
-  border: none;
-  border-radius: 10px;
-`;
-
 interface ICautionModal {
   setWarnModalFlag: Function
 }

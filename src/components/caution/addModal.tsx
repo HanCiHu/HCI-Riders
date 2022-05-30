@@ -48,6 +48,8 @@ const CautionInput = styled.input`
   margin: 16px;
   border: none;
 
+  text-align: center;
+
   ::placeholder{
 		color: #FFFFFF;
 	}

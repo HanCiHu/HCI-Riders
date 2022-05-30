@@ -5,6 +5,7 @@ import { AiOutlineCaretRight } from 'react-icons/ai';
 
 import SlideModal from './slideModal';
 import BottomNavigator from './../tabNavigator';
+import AddCourseModal from './addCourseModal';
 
 const Container = styled.div`
 	width: 100%;
@@ -55,13 +56,24 @@ const CourseBtnDiv = styled.div`
 	.pauseBtn{
 		margin: 10px;
 	}
+`;
 
+const ModalBackground = styled.div`
+	width: 100%;
+	height: 100%;
 
+	z-index: 50;
+
+	background-color: #727272;
+	opacity: 60%;
+
+	position: absolute;
 `;
 
 const CourseScreen = (): JSX.Element => {
 	const mapDivRef = useRef<HTMLDivElement>(null);
 	const [courseMode, setCourseMode] = useState<boolean>(true);
+	const [courseModalFlag, setCourseModalFlag] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (!mapDivRef.current) return;
@@ -75,8 +87,10 @@ const CourseScreen = (): JSX.Element => {
 
 	return (
 		<Container>
+			{courseModalFlag && <AddCourseModal setCourseModalFlag={setCourseModalFlag}/>}
+			{courseModalFlag && <ModalBackground />}
 			<CourseBtnDiv onClick={courseBtnHandler}>
-				{!courseMode ? <FaPause size={30} className='pauseBtn' /> : <AiOutlineCaretRight size={50} className='startBtn' />}
+				{!courseMode ? <FaPause size={30} className='pauseBtn' onClick={() => setCourseModalFlag(true)} /> : <AiOutlineCaretRight size={50} className='startBtn' />}
 			</CourseBtnDiv>
 			<MapWrapper ref={mapDivRef}>
 				<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={4506} y={4364} />
