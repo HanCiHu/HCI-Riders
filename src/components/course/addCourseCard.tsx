@@ -55,15 +55,19 @@ const DetailBtn = styled.button`
   border: none;
 
 `
+interface IAddCourseCard {
+  title: string,
+  setDetailCourseFlag: Function,
+}
 
-const AddCourseCard = ({ title }: { title: string }):JSX.Element => {
+const AddCourseCard = ({ title, setDetailCourseFlag }: IAddCourseCard):JSX.Element => {
   return (
     <Container>
       <Img src={`${process.env.PUBLIC_URL}/course2.png`}/>
       <Description>
         <TitleWrapper>{title}</TitleWrapper>
         <p style={{margin: '5px 0', textAlign: 'center'}}>⭐️⭐️⭐️</p>
-        <DetailBtn>Detail</DetailBtn>
+        <DetailBtn onClick={() => setDetailCourseFlag(true)}>Detail</DetailBtn>
       </Description>
     </Container>
   );

@@ -64,18 +64,19 @@ const HiddenDiv = styled.div`
 
 interface ISharedCourseModal {
   setAddCourseFlag: Function,
+  setDetailCourseFlag: Function,
 }
 
-const SharedCourseModal = ({setAddCourseFlag}: ISharedCourseModal):JSX.Element => {
+const SharedCourseModal = ({ setAddCourseFlag, setDetailCourseFlag }: ISharedCourseModal):JSX.Element => {
 
   return (
     <Container>
       <CardWrapper>
         <HiddenDiv />
-        <AddCourseCard title={"123"}/>
-        <AddCourseCard title={"123"}/>
-        <AddCourseCard title={"123"}/>
-        <AddCourseCard title={"123"}/>
+        <AddCourseCard title={"123"} setDetailCourseFlag={setDetailCourseFlag} />
+        <AddCourseCard title={"123"} setDetailCourseFlag={setDetailCourseFlag}/>
+        <AddCourseCard title={"123"} setDetailCourseFlag={setDetailCourseFlag}/>
+        <AddCourseCard title={"123"} setDetailCourseFlag={setDetailCourseFlag}/>
         <HiddenDiv />
       </CardWrapper>
       <BackBtn onClick={() => setAddCourseFlag(false)}>Back to Course</BackBtn>

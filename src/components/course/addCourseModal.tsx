@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import styled from 'styled-components';
-
 import { ToggleSlider }  from "react-toggle-slider";
 
 const Container = styled.div`

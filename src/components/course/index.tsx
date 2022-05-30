@@ -7,6 +7,7 @@ import SlideModal from './slideModal';
 import BottomNavigator from './../tabNavigator';
 import AddCourseModal from './addCourseModal';
 import SharedCourseModal from './sharedCourseModal';
+import DetailCourseModal from './detailCourseModal';
 
 const Container = styled.div`
 	width: 100%;
@@ -76,6 +77,7 @@ const CourseScreen = (): JSX.Element => {
 	const [courseMode, setCourseMode] = useState<boolean>(true);
 	const [courseModalFlag, setCourseModalFlag] = useState<boolean>(false);
 	const [addCourseFlag, setAddCourseFlag] = useState<boolean>(false);
+	const [detailCourseFlag, setDetailCourseFlag] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (!mapDivRef.current) return;
@@ -91,7 +93,8 @@ const CourseScreen = (): JSX.Element => {
 		<Container>
 			{courseModalFlag && <AddCourseModal setCourseModalFlag={setCourseModalFlag}/>}
 			{(courseModalFlag || addCourseFlag) && <ModalBackground />}
-			{addCourseFlag && <SharedCourseModal setAddCourseFlag={setAddCourseFlag} />}
+			{addCourseFlag && <SharedCourseModal setAddCourseFlag={setAddCourseFlag} setDetailCourseFlag={setDetailCourseFlag} />}
+			{detailCourseFlag && <DetailCourseModal setDetailCourseFlag={setDetailCourseFlag} setAddCourseFlag={setAddCourseFlag} />}
 			<CourseBtnDiv onClick={courseBtnHandler}>
 				{!courseMode ? <FaPause size={30} className='pauseBtn' onClick={() => setCourseModalFlag(true)} /> : <AiOutlineCaretRight size={50} className='startBtn' />}
 			</CourseBtnDiv>
