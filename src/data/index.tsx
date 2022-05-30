@@ -12,4 +12,10 @@ export interface IWarningData {
 	y: number
 }
 
-export const warningData: IWarningData[] = [{x: 2000, y: 1100}, {x: 1600, y: 900}, {x: 1500, y: 1200}, {x: 1400, y: 800}, {x: 1800, y: 1000}]
+export const warningData: IWarningData[] = [
+  {x: 2000, y: 1100},
+  {x: 1600, y: 900},
+  {x: 1500, y: 1200},
+  {x: 1400, y: 800},
+  {x: 1800, y: 1000}
+];
