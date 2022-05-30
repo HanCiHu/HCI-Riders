@@ -72,6 +72,18 @@ const ModalBackground = styled.div`
 	position: absolute;
 `;
 
+const DetailModalBackground = styled.div`
+	width: 100%;
+	height: 100%;
+
+	z-index: 150;
+
+	background-color: #727272;
+	opacity: 60%;
+
+	position: absolute;
+`;
+
 const CourseScreen = (): JSX.Element => {
 	const mapDivRef = useRef<HTMLDivElement>(null);
 	const [courseMode, setCourseMode] = useState<boolean>(true);
@@ -95,6 +107,7 @@ const CourseScreen = (): JSX.Element => {
 			{(courseModalFlag || addCourseFlag) && <ModalBackground />}
 			{addCourseFlag && <SharedCourseModal setAddCourseFlag={setAddCourseFlag} setDetailCourseFlag={setDetailCourseFlag} />}
 			{detailCourseFlag && <DetailCourseModal setDetailCourseFlag={setDetailCourseFlag} setAddCourseFlag={setAddCourseFlag} />}
+			{detailCourseFlag && <DetailModalBackground />}
 			<CourseBtnDiv onClick={courseBtnHandler}>
 				{!courseMode ? <FaPause size={30} className='pauseBtn' onClick={() => setCourseModalFlag(true)} /> : <AiOutlineCaretRight size={50} className='startBtn' />}
 			</CourseBtnDiv>

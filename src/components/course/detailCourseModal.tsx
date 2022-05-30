@@ -20,6 +20,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+
+  z-index: 200;
 `;
 
 const SelectBtn = styled.button`
