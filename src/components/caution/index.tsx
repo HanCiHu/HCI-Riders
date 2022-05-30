@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import BottomNavigator from './../tabNavigator';
 import AddModal from './addModal';
+import CautionModal from './cautionModal';
 import { warningData } from '../../data';
 
 const Container = styled.div`
@@ -53,6 +54,7 @@ const CautionScreen = (): JSX.Element => {
 	const touchTimeoutRef = useRef<Date>();
 	const touchPositionRef = useRef<IPin>({x: 0, y: 0});
 	const [selectModalFlag, setSelectModalFlag] = useState<boolean>(false);
+	const [checkModalFlag, setCheckModalFlag] = useState<boolean>(false);
 	const [warnModalFlag, setWarnModalFlag] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -78,13 +80,18 @@ const CautionScreen = (): JSX.Element => {
 		setWarnModalFlag(true);
 	}
 
+	const checkModal = () => {
+		setCheckModalFlag(true);
+	}
+
 	return (
 		<Container>
 				{warnModalFlag && <AddModal setWarnModalFlag={setWarnModalFlag}/>}
+				{checkModalFlag && <CautionModal setWarnModalFlag={setCheckModalFlag}/>}
 				<MapWrapper ref={mapDivRef} onTouchStart={touchStartHandler} onTouchEnd={touchEndHandler}>
 					{selectModalFlag && <AddWarningModal onTouchStart={addWarnModal} x={touchPositionRef.current.x} y={touchPositionRef.current.y}>{"마크 생성"}</AddWarningModal>}
 					<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={4506} y={4364} />
-					{warningData.map(({x, y}, i) => <Pin src={`${process.env.PUBLIC_URL}/warning_pin.svg`} x={x} y={y} key={i} />)}
+					{warningData.map(({x, y}, i) => <Pin onClick={checkModal} src={`${process.env.PUBLIC_URL}/warning_pin.svg`} x={x} y={y} key={i} />)}
 					<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={1900} y={1030} />
 					<img src={`${process.env.PUBLIC_URL}/map.png`} />
 				</MapWrapper>
