@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
+import AddCourseCard from './addCourseCard';
+
 const slideUpAnimation = keyframes`
   from {
     transform: translateY(50%);
@@ -36,6 +38,7 @@ const CardWrapper = styled.div`
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
 
+  overflow-y: scroll;
 `;
 
 const BackBtn = styled.button`
@@ -52,6 +55,13 @@ const BackBtn = styled.button`
 
 `;
 
+const HiddenDiv = styled.div`
+  width: 340px;
+  height: 50px;
+
+  background-color: #000000;
+`;
+
 interface ISharedCourseModal {
   setAddCourseFlag: Function,
 }
@@ -61,7 +71,12 @@ const SharedCourseModal = ({setAddCourseFlag}: ISharedCourseModal):JSX.Element =
   return (
     <Container>
       <CardWrapper>
-
+        <HiddenDiv />
+        <AddCourseCard title={"123"}/>
+        <AddCourseCard title={"123"}/>
+        <AddCourseCard title={"123"}/>
+        <AddCourseCard title={"123"}/>
+        <HiddenDiv />
       </CardWrapper>
       <BackBtn onClick={() => setAddCourseFlag(false)}>Back to Course</BackBtn>
     </Container>
