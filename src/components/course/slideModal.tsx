@@ -109,7 +109,11 @@ const AddCourseCard = styled.div`
   margin: 5px;
 `;
 
-const SlideModal = ():JSX.Element => {
+interface ISlideModal {
+  setAddCourseFlag: Function,
+}
+
+const SlideModal = ({setAddCourseFlag}: ISlideModal):JSX.Element => {
   const [modalHeight, setModalHeight] = useState<number>(170);
   const [courseMode, setMode] = useState<boolean>(false);
 
@@ -134,7 +138,7 @@ const SlideModal = ():JSX.Element => {
           myCourseList.map((title) => <Card key={title} title={title} color={"#5C9862"}/>)
           : sharedCourseList.map((title) => <Card key={title} title={title} color={"#4F6BFF"} />)
         }
-        {courseMode && <AddCourseCard><FiPlusSquare size={60}/></AddCourseCard>}
+        {courseMode && <AddCourseCard onClick={() => setAddCourseFlag(true)}><FiPlusSquare size={60}/></AddCourseCard>}
           <div style={{width: '90%', height: 100, backgroundColor: '#727272'}}/>
         </CardWrap>
       </Container>

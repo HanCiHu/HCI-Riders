@@ -6,6 +6,7 @@ import { AiOutlineCaretRight } from 'react-icons/ai';
 import SlideModal from './slideModal';
 import BottomNavigator from './../tabNavigator';
 import AddCourseModal from './addCourseModal';
+import SharedCourseModal from './sharedCourseModal';
 
 const Container = styled.div`
 	width: 100%;
@@ -74,6 +75,7 @@ const CourseScreen = (): JSX.Element => {
 	const mapDivRef = useRef<HTMLDivElement>(null);
 	const [courseMode, setCourseMode] = useState<boolean>(true);
 	const [courseModalFlag, setCourseModalFlag] = useState<boolean>(false);
+	const [addCourseFlag, setAddCourseFlag] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (!mapDivRef.current) return;
@@ -88,7 +90,8 @@ const CourseScreen = (): JSX.Element => {
 	return (
 		<Container>
 			{courseModalFlag && <AddCourseModal setCourseModalFlag={setCourseModalFlag}/>}
-			{courseModalFlag && <ModalBackground />}
+			{(courseModalFlag || addCourseFlag) && <ModalBackground />}
+			{addCourseFlag && <SharedCourseModal setAddCourseFlag={setAddCourseFlag} />}
 			<CourseBtnDiv onClick={courseBtnHandler}>
 				{!courseMode ? <FaPause size={30} className='pauseBtn' onClick={() => setCourseModalFlag(true)} /> : <AiOutlineCaretRight size={50} className='startBtn' />}
 			</CourseBtnDiv>
@@ -97,7 +100,7 @@ const CourseScreen = (): JSX.Element => {
 				<Pin src={`${process.env.PUBLIC_URL}/my_pin.svg`} x={1900} y={1030} />
 				<img src={`${process.env.PUBLIC_URL}/map.png`} />
 			</MapWrapper>
-			<SlideModal />
+			<SlideModal setAddCourseFlag={setAddCourseFlag} />
 			<BottomNavigator />
 		</Container>
 	);

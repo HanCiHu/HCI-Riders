@@ -14,6 +14,8 @@ const Container = styled.div`
   bottom: 0px;
 
   z-index: 3;
+
+  z-index: 200;
 `;
 
 const IconDiv = styled.div`
